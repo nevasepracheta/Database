@@ -1,0 +1,63 @@
+SELECT * FROM employee ORDER BY salary;
+
+SELECT * FROM employee ORDER BY SEX, first_name, last_name;
+
+SELECT * FROM employee LIMIT 5;
+
+SELECT first_name, last_name FROM employee;
+
+SELECT first_name as FORENAME, last_name as SURNAME from employee;
+
+SELECT DISTINCT sex FROM employee;
+
+SELECT COUNT(super_id) FROM employee;
+
+SELECT COUNT(emp_id) FROM employee
+WHERE sex = 'F' AND birth_day > '1970-01-01';
+
+SELECT AVG(salary) FROM employee;
+
+SELECT COUNT(sex), sex FROM employee GROUP BY sex;
+
+SELECT * FROM client WHERE client_name LIKE '%LLC%';
+
+SELECT * FROM employee WHERE birth_day LIKE '____-10%';
+
+SELECT first_name AS 'Employee List' FROM employee
+UNION SELECT branch_name FROM branch 
+WHERE branch_id = 1;
+
+SELECT salary FROM employee
+UNION
+SELECT total_sales FROM works_with;
+
+INSERT INTO branch VALUES (4, 'Buffalo', NULL, NULL);
+
+SELECT employee.emp_id, employee.first_name, branch.branch_name FROM employee
+
+JOIN branch
+
+ON employee.emp_id = branch.mgr_id;
+
+SELECT employee.first_name, employee.last_name 
+FROM employee
+WHERE employee.emp_id IN (
+    SELECT works_with.emp_id 
+    FROM works_with 
+    WHERE works_with.total_sales > 30000);
+
+
+SELECT client.client_name 
+FROM client 
+WHERE client.branch_id  = (SELECT branch.branch_id 
+FROM branch 
+WHERE branch.mgr_id = 102);
+
+DELETE FROM employee WHERE emp_id = 102;
+
+SELECT * FROM branch;
+SELECT * FROM employee;
+
+DELETE FROM branch WHERE branch_id = 2;
+
+SELECT * FROM branch_supplier;
