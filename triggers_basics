@@ -1,0 +1,44 @@
+CREATE TABLE trigger_test (message VARCHAR(100));
+
+DELIMITER $$
+CREATE 
+    TRIGGER my_trigger BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        INSERT INTO trigger_test VALUES('Added new employee');
+    END$$
+DELIMITER;
+
+DELIMITER $$
+CREATE 
+    TRIGGER my_trigger1 BEFORE INSERT 
+    ON employee 
+    FOR EACH ROW BEGIN 
+        INSERT INTO trigger_test VALUES(NEW.first_name);
+    END$$
+DELIMITER;
+
+DELIMITER $$
+CREATE
+    TRIGGER my_trigger2 BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        IF NEW.sex = 'M' THEN
+            INSERT INTO trigger_test VALUES('Added male employee');
+        ELSEIF NEW.sex = 'F' THEN 
+            INSERT INTO trigger_test VALUES('Added female employee');
+        ELSE
+            INSERT INTO trigger_test VALUES('Added other employee');
+        END IF;
+    END$$
+DELIMITER ;
+
+INSERT 
+INTO employee 
+VALUES(111, 'Dwight', 'Scrutt', '1958-11-14', 'M', 90000, 102, 2);
+
+INSERT 
+INTO employee 
+VALUES(112, 'Pam', 'Beesly', '1960-10-13', 'F', 60000, 102, 2);
+
+SELECT * FROM trigger_test;
