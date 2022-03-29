@@ -1,0 +1,13 @@
+use tabular;
+
+describe keyspace tabular;
+
+CREATE TABLE IF NOT EXISTS books (
+           ... bookid uuid,
+           ... author text,
+           ... title text,
+           ... year int,
+           ... categories set <text>,
+           ... added_on timestamp,
+           ... PRIMARY KEY (bookid)
+           ... );
