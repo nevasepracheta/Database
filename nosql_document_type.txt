@@ -1,0 +1,10 @@
+Data is stored as object -> Collection-Document.
+
+JSON is popular format that is used in document type database.
+
+APIs (HTTP method) : Get, Post, Put, Delete
+
+Create/Retrieve/Update/Delete collections and documents in collection -> Swagger UI. It creates URL to connect to to view the data
+
+a JSON blob with search filters; allowed predicates: $eq, $ne, $in, $nin, $gt, $lt, $gte, $lte, $exists; 
+allowed boolean operators: $and, $or, $not; allowed hints: $selectivity (a number between 0.0 and 1.0, less is better); Use \ to escape periods, commas, and asterisks.
